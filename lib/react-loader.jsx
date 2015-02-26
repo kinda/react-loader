@@ -79,12 +79,13 @@
       var that = this;
       if (that.isMounted() && !that.state.loaded) {
         setTimeout(function () {
-          if (that.state.loaded) return;
-          var spinner = new Spinner(that.state.options);
-          var target = that.refs.loader.getDOMNode();
-          // clear out any other spinners from previous renders
-          target.innerHTML = '';
-          spinner.spin(target);
+          if (that.isMounted() && !that.state.loaded) {
+            var spinner = new Spinner(that.state.options);
+            var target = that.refs.loader.getDOMNode();
+            // clear out any other spinners from previous renders
+            target.innerHTML = '';
+            spinner.spin(target);
+          }
         }, that.props.delay);
       }
     },
